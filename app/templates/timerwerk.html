@@ -1,0 +1,82 @@
+  {% extends "baselayout.html" %}
+
+{% block content %}
+<br> <br>
+<html lang="en">
+<head>
+
+  <title>1 Minute Hangboard Routine</title>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+  <!-- <div id="progress"  class="container-fluid">
+          <div>&bull;</div>
+          <div>&bull;</div>
+          <div>&bull;</div>
+          <div>&bull;</div>
+          <div>&bull;</div>
+          <div>&bull;</div>
+          <div>&bull;</div>
+
+  </div> !-->
+
+
+  <div id="welcome">
+    <h1>Hangboard Repeaters<h1>
+    <button id="start">Start</button>
+
+    <h2 style="color:#2c3e50">{{current_user.nickname}} </h2> <h2 <style ="colour:white"> interval workout timer</h2>
+
+    <p>Time driven high intensity hangboard session</p>
+    <p>No special equipment required, other than a fingerboard or edge.</p>
+
+    <p>Hang = {{ hangtime }} seconds</p>
+    <p>Rest = {{ resttime }} seconds </p>
+    <p>Hands used = {{ arm_used }} </p>
+    <p>Reps = {{ reps }} repetions</p>
+    <p>Rest = {{setrest }} seconds</p>
+    <p>Sets = {{ sets }} cycles </p>
+
+    <H4> Don't be weak</h4> 
+    <hr>
+
+  </div>
+  <br>
+  <div id="counter"></div></div>
+  <div id="description"></div>
+  <div id="controls">
+    <button id="reset">Reset</button><button id="skip">Skip</button>
+  </div>
+
+<div class="container">
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">x</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>
+
+</div>
+<script>
+
+var prepInterval = 13
+var workInterval = "{{hangtime}}"
+var restInterval = "{{resttime}}"
+var exerciseReps = "{{reps}}"
+var sets = "{{ sets }}"
+var setrest = "{{ setrest }}"
+</script>
+
+  <script src={{ url_for('static', filename='js/fitness.js') }}></script>
+
+
+</body>
+</html>
+
+{% endblock %}
+
+

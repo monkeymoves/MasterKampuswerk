@@ -1,0 +1,7 @@
+*.pyc
+instance/
+venv/
+setup.bat
+myvirtualenv/
+*.sublime-project
+*.sublime-workspace

@@ -1,0 +1,60 @@
+ {% extends "baselayout.html" %}
+
+
+
+{%block content%}
+
+
+
+<header>
+<section>
+{% for message in get_flashed_messages() %}
+            <p><b>Error</b>: {{ message }}</p>
+        {% endfor %}
+<div class="container">
+<img class="img-responsive" src="/static/img/mountains.png" alt="">
+
+
+
+<div class="intro-text">
+             <h2>Kampuswerk</h2>
+
+
+        {% if current_user.is_authenticated %}
+            <h4>Hi, {{ current_user.nickname }}!</h4>
+             <button type="button" class="btn btn-primary"> <a href="{{ url_for('.logout') }}">Logout</a> </button>
+        {% else %}
+             <h4>Login to save training data</h4>
+
+
+
+            <button type="button" class="btn btn-facebook"> <a href="{{ url_for('.oauth_authorize', provider='facebook') }}"><font color="white">Facebook </font> </a> </button>
+            <button type="button" class="btn btn-twitter"> <a href="{{ url_for('.oauth_authorize', provider='twitter') }}"><font color="white">Twitter </font> </a> </button>
+            <button type="button" class="btn btn-google"> <a href="{{ url_for('.oauth_authorize', provider='google') }}"><font color="white">Google </font> </a> </button>
+
+        {% endif %}
+
+        </div>
+</div>
+
+
+
+</section>
+</header>
+     <!-- About Section -->
+    <section class="success" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+
+                    <p> <em>where power becomes reality</em></p>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
+

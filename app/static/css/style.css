@@ -1,0 +1,114 @@
+body {
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #fff;
+  background: #18BC9C ;
+}
+
+h1 {
+  font-size: 42px;
+  font-weight: normal;
+  text-align: center;
+  line-height: 1em;
+}
+
+
+
+a { color: #f1c40f; }
+a:hover { color: #f39c12; }
+a:visited { color: #8e44ad; }
+
+hr {
+  border: #fff 1px solid;
+}
+
+button {
+  background-color: #2C3E50;
+  box-shadow: 0 6px #2b464f;
+  color: #fff;
+  text-align: center;
+  font-size: 24px;
+  border: none;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  position: relative;
+  padding: 0.3em 1em;
+  }
+
+button:active {
+  top: 2px;
+  box-shadow: 0 4px #27ae60;
+}
+#welcome {
+  margin: auto;
+  width: 90%;
+  max-width: 600px;
+  line-height: 1.5em;
+}
+
+#start {
+  margin: 0 auto;
+  font-size: 42px;
+  display: block;
+  width: 90%;
+}
+
+#counter {
+  text-align: center;
+  font-size: 100px;
+  font-size: 25vw;
+}
+
+#description {
+  text-align: center;
+  font-size: 42px;
+}
+#reset {
+  margin-right: 2%;
+}
+
+#skip, #reset {
+  display: inline-block;
+  margin-top: 50px;
+  font-size: 24px;
+  background-color: #e67e22;
+  box-shadow: 0 6px #d35400;
+  width: 49%;
+  padding: 5 0 5 0px;
+
+}
+#skip:active, #reset:active {
+  top: 2px;
+  box-shadow: 0 4px #d35400;
+}
+
+#controls {
+  display: none;
+  margin: 0 auto;
+  font-size: 42px;
+  width: 90%;
+  max-width: 500px;
+}
+#progress {
+  display: block;
+  height: 50px;
+  width: 90%;
+  max-width: 500px;
+  margin: auto;
+  margin-top: 20px;
+  text-align:center
+}
+
+#progress div {
+  padding-left: 18px;
+  float: left;
+  font-size: 60px;
+  line-height: 0.4em;
+  width: 8.3%;
+}
+#progress .done {
+  color: #f1c40f;
+}
+/* @media screen and (min-height: 600px) {
+  #counter { font-size: 300px; };
+}*/

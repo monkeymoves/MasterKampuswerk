@@ -1,0 +1,146 @@
+{% extends "baselayout.html" %}
+{% block content %}
+
+
+
+
+</div>
+<!--<h2>{{ title }}</h2> !-->
+<section id="header">
+<div class="container">
+
+<div class="row">
+
+
+
+  
+
+
+
+   <img id='p' class="col-xs-12 col-sm-6 img-responsive"  src="{{ url_for('static', filename ="img/BM2000.png")}}" />
+    <img class="col-xs-12 col-sm-6 img-responsive"  src="{{ url_for('static', filename ="img/BM1000.png")}}" /> 
+<!--
+
+    <option value="">other</option>
+</select>select onchange="$('#imageToSwap').attr('src', this.options[this.selectedIndex].value);">
+    <option value="http://127.0.0.1:5000/static/img/BM2000.png" selected>Beastmaker2000</option>
+    <option value="http://127.0.0.1:5000/static/img/BM1000.png">Beastmaker1000</option>
+    <option value="">KampusRung</option>
+    <option value="">OtherBoard</option>
+
+src="http://127.0.0.1:5000/static/img/BM2000.png"
+
+    !-->
+    
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{% from "_formhelpers.html" import render_field %}
+
+ <div class="jumbotron" id="hangboard">
+        <div class="container">
+
+
+        <h3>Enter Hangboard Data: <font color="primary"> {{current_user.nickname }} </font> </h3>
+        <h6>{% with messages = get_flashed_messages() %}
+   {% if messages %} {% for message in messages %}
+         {{ message }}
+      {% endfor %}
+   {% endif %}
+
+{% endwith %}  
+
+
+
+ </h6>
+            <form action="hangboard" method="POST">
+                {{ form.csrf_token }}
+
+
+  
+
+
+<div class="form-group">  <font color="secondary">  </font>
+ </select>
+    <option value="http://127.0.0.1:5000/static/img/BM2000.png" selected>Beastmaker2000</option>
+    <option value="http://127.0.0.1:5000/static/img/BM1000.png">Beastmaker1000</option>
+    <option value="">KampusRung</option>
+    <option value="">OtherBoard</option>
+
+
+ </div> 
+
+
+
+<div class="form-group">  <font color="secondary">  {{ form.board.label(class_="col-xs-6 control-label") }}
+<div class="col-xs-6">  {{ form.board(class_="form-control") }} </div>
+</div>
+
+<div class="form-group">  <font color="primary"> {{ form.holds_used.label(class_="col-xs-6 control-label") }}
+<div class="col-xs-6"> {{ form.holds_used(class_="form-control") }} </div>
+</div>
+<div class="form-group">  <font color="secondary">{{ form.arm_used.label(class_="col-xs-6 control-label")}}
+<div class="col-xs-6"> {{ form.arm_used(class_="form-control") }} </div>
+</div>
+
+<div class="form-group">  <font color="secondary"> {{ form.reps.label(class_="col-xs-6 control-label")}}
+<div class="col-xs-6"> {{ form.reps(class_="form-control")}} </div>
+</div>
+
+
+<div class="form-group">  <font color="primary">{{ form.hangtime.label(class_="col-xs-6 control-label")}}
+<div class="col-xs-6"> {{form.hangtime(class_="form-control")}} </div>
+</div>
+
+<div class="form-group">  <font color="secondary"> {{ form.resttime.label(class_="col-xs-6 control-label")}}
+<div class="col-xs-6"> {{ form.resttime(class_="form-control")}} </div>
+</div>
+
+<div class="form-group">  <font color="primary">{{ form.weight_kg.label(class_="col-xs-6 control-label")}}
+<div class="col-xs-6">{{ form.weight_kg(class_="form-control") }} </div>
+</div>
+
+<div class="form-group">  <font color="secondary">{{ form.sets.label(class_="col-xs-6 control-label")}}
+<div class="col-xs-6"> {{ form.sets(class_="form-control") }} </div>
+</div>
+
+<div class="form-group">  <font color="primary">{{ form.setrest.label(class_="col-xs-6 control-label")}}
+<div class="col-xs-6"> {{ form.setrest(class_="form-control") }} </div>
+</div>
+<input class="btn btn-primary" type="submit" value="Submit Data">
+</form>
+<div class="container">
+          </div>
+
+
+</section>
+<!-- {{ form.arm_used.label}} <div class="col-xs6"> {{ form.arm_used(class_="radio-inline") }} </div> !-->
+<!-- {{ form.holds_used.label }} {{ form.holds_used(size=20) }} !-->
+<!--	<div class="col-xs-1"> 	<button class="btn">?</button></div> !-->
+
+
+<script type="text/javascript" src="/static/vendor/jquery/jquery.min.js">
+
+$(document).ready(function(){
+
+    $("#board").change(function(){
+        $("#p").hide();
+    });
+});
+
+});
+
+</script>
+
+{% endblock %}
+
+

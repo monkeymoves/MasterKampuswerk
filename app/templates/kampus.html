@@ -1,0 +1,87 @@
+{% extends "baselayout.html" %}
+
+{% block content %}
+
+
+<head>
+<style>
+.button-wrapper .btn {
+    margin-bottom:5px;
+}
+</style>
+</head>
+
+
+<section >
+
+<div class="container">
+<div class="row"
+<div class="col-xs-12">
+</div>
+<h3> Kampus User: <font color="blue"> {{current_user.nickname }} </font> </h3>
+
+<h3 id="p1"> Press to enter sequence  </h3>
+</div>
+
+
+
+<div class="container" style>
+
+
+
+   <div class="row">
+
+<div class="btn-group-vertical col-xs-6 button-wrapper"  >
+    <button type="button" id="L10" value="L10" class="btn btn-primary ">L10</button>
+    <button type="button" id="L9" value="L9" class="btn btn-primary  ">L9</button>
+    <button type="button" id="L8" value="L8" class="btn btn-primary  ">L8</button>
+    <button type="button" id="L7" value="L7" class="btn btn-primary  ">L7</button>
+    <button type="button" id="L6" value="L6" class="btn btn-primary  ">L6</button>
+    <button type="button" id="L5" value="L5" class="btn btn-primary  ">L5</button>
+    <button type="button" id="L4" value="L4" class="btn btn-primary  ">L4</button>
+    <button type="button" id="L3" value="L3" class="btn btn-primary  ">L3</button>
+    <button type="button" id="L2" value="L2" class="btn btn-primary  ">L2</button>
+    <button type="button" id="L1" value="L1" class="btn btn-primary  ">L1</button>
+    <button type="button" id="undo" value="undo" class="btn btn-danger ">Undo</button>
+</div>
+
+
+<div class="btn-group-vertical col-xs-6 button-wrapper">
+    <button type="button" id="R10" value="R10" class="btn btn-primary ">R10</button>
+    <button type="button" id="R9" value="R9" class="btn btn-primary  ">R9</button>
+    <button type="button" id="R8" value="R8" class="btn btn-primary  ">R8</button>
+    <button type="button" id="R7" value="R7" class="btn btn-primary  ">R7</button>
+    <button type="button" id="R6" value="R6" class="btn btn-primary  ">R6</button>
+    <button type="button" id="R5" value="R5" class="btn btn-primary  ">R5</button>
+    <button type="button" id="R4" value="R4" class="btn btn-primary  ">R4</button>
+    <button type="button" id="R3" value="R3" class="btn btn-primary  ">R3</button>
+    <button type="button" id="R2" value="R2" class="btn btn-primary  ">R2</button>
+    <button type="button" id="R1" value="R1" class="btn btn-primary  ">R1</button>
+    <button type="button" id="submit" value="submit" class="btn btn-success ">Submit</button>
+</div>
+
+<img style="margin: 15px" src=static/img/campus.jpg /> </br>
+
+   </div>
+       </div>
+
+
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src={{ url_for('static', filename='js/kampus.js') }}></script>
+<!--
+<div class="col-sm-12">
+    {% for kampus in kampus %}
+    <div class="row">
+
+   <h6>  {{ kampus.name, kampus.hand, kampus.rung1, kampus.rung2, kampus.rung3, kampus.rung4, kampus.rung5, kampus.rung6, kampus.rung7, kampus.rung8, kampus.rung9, kampus.timestamp   }} </h6>
+    </div>
+    {% endfor %}
+</div> !-->
+
+
+
+{% endblock content %}

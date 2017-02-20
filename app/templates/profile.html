@@ -1,0 +1,85 @@
+{% extends "baselayout.html" %}
+
+{% block content %}
+
+<section>
+
+<div class="container">
+
+<h3>Review your data <font color="primary"> {{current_user.nickname }} </font> </h3>
+
+
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         {{ message }}
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+
+
+<div class="col-sm-12">
+    {% for kampus in kampus %}
+    <div class="row">
+
+   <h6> <font color="red">Kampus Data </font>{{ kampus.name, kampus.kampuslog, kampus.timestamp   }}  </h6>
+    </div>
+    {% endfor %}
+</div>
+
+
+<div class="col-sm-12">
+    {% for hangboard in hangboard %}
+    <div class="row">
+
+   <h6> <font color="red"> Hangboard </font> {{ hangboard.name, hangboard.board, hangboard.holds_used }} </h6>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="col-sm-12">
+    {% for circuitmoves in circuitmoves %}
+    <div class="row">
+
+   <h6><font color="red"> Circuits </font> {{ circuitmoves.name, circuitmoves.numberofmoves }} </h6>
+    </div>
+    {% endfor %}
+</div>
+
+
+<div class="col-sm-12">
+    {% for routes in routes %}
+    <div class="row">
+
+   <h6> <font color="red"> Routes </font> {{ routes.name, routes.grade }} </h6>
+    </div>
+    {% endfor %}
+    </div>
+
+
+<div class="col-sm-12">
+    {% for blocs in blocs %}
+    <div class="row">
+
+   <h6> <font color="red"> Blocs </font> {{ blocs.name, blocs.grade }} </h6>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+<div class='container'>
+{% for bodyweight in bodyweight %}
+    <div class="row" >
+        {{ bodyweight.name, bodyweight.bodyweight_kg, bodyweight.notes }}
+    </div>
+{% endfor %}
+
+</div>
+
+</div>
+</section>
+
+{% endblock %}

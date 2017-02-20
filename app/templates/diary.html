@@ -1,0 +1,53 @@
+{% extends "baselayout.html" %}
+
+{% block content %}
+
+<section>
+
+<div class="container">
+
+<h3>Enter Your weight in KG: <font color="primary"> {{current_user.nickname }} </font> </h3>
+
+
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         {{ message }}
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+
+<form class="form-group" method="POST" action="/profile">
+    {{ form.csrf_token }}
+
+
+
+<div class="form-group" > <font color="primary"> {{  form.bodyweight_kg.label(class_="col-xs-6 control-label") }} </font>
+<div class="col-xs-6"> {{ form.bodyweight_kg(class_="form-control")}} </div>
+</div>
+
+<div class="form-group"> <font color="secondary"> {{ form.notes.label(class_="col-xs-6 control-label")}}
+<div class="col-xs-6">{{ form.notes(class_="form-control") }} </div>
+</div>
+
+
+<input class="btn btn-primary" type="submit" value="Submit weight data">
+</form>
+
+
+</div>
+
+
+<div class='container'>
+{% for bodyweight in bodyweight %}
+    <div class="row">
+        {{ bodyweight.name, bodyweight.bodyweight_kg }}
+    </div>
+{% endfor %}
+
+</div>
+
+</div>
+</section>
+
+{% endblock %}

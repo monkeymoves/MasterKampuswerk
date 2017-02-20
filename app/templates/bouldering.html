@@ -1,0 +1,78 @@
+{% extends "baselayout.html" %}
+
+{% block content %}
+
+<section>
+<div class='container'><h3>    Enter Blocs Data: <font color="primary"> {{current_user.nickname }} </font> </h3>
+</div>
+<div class="row jumbotron ">
+
+ <img class="col-xs-12 col-md-6  img-responsive"  src="{{ url_for('static', filename ="img/dinas.jpg")}}" />
+
+<div class="col-xs-12 col-md-6 jumbotron" id="routes">
+<div class="container">
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         {{ message }}
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+
+
+<form class="form-group" method="POST" action="/bouldering">     {{ form.csrf_token }}
+
+<div class="form-group"> <font color="secondary"> {{ form.grade.label(class_="col-xs-6 control-label")}}
+<div class="col-xs-6">{{ form.grade(class_="form-control") }} </div>
+</div>
+
+
+<div class="form-group"> {{ form.intensity.label(class_="col-xs-6 control-label")}}
+<div class="col-xs-6"> {{ form.intensity(class_="form-control")}} </div>
+</div>
+
+<div class="form-group"> <font color="primary"> {{ form.werktime.label(class_="col-xs-6 control-label")}}
+<div class="col-xs-6"> {{form.werktime(class_="form-control")}} </div>
+</div>
+
+
+<div class="form-group"> <font color="secondary"> {{ form.angle.label(class_="col-xs-6 control-label")}}
+<div class="col-xs-6">{{ form.angle(class_="form-control") }} </div>
+</div>
+
+<div class="form-group"> <font color="secondary"> {{ form.venue.label(class_="col-xs-6 control-label")}}
+<div class="col-xs-6">{{ form.venue(class_="form-control") }} </div>
+</div>
+
+<div class="form-group"> <font color="secondary"> {{ form.style.label(class_="col-xs-6 control-label")}}
+<div class="col-xs-6">{{ form.style(class_="form-control") }} </div>
+</div>
+
+<div class="form-group"> <font color="primary"> {{ form.comments.label(class_="col-xs-6 control-label")}} </font>
+<div class="col-xs-6"> {{ form.comments(class_="form-control")}} </div>
+</div>
+
+<input class="btn btn-primary" type="submit" value="Submit Data">
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+</section>
+
+<section class="jumbotron" id="database_return">
+<div class="container">
+    {% for blocs in blocs %}
+    <div class="row">
+    {{ blocs.name, blocs.grade, blocs.werktime}}
+    </div>
+    {% endfor %}
+</div>
+</section>
+
+{% endblock %}
