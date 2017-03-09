@@ -20,10 +20,41 @@
 </div>
 <h3> Kampus User: <font color="blue"> {{current_user.nickname }} </font> </h3>
 
-<h3 id="p1"> Press to enter sequence  </h3>
+
+
+
+<h4 id="p1"> Press to enter sequence: <font color="blue">    L1, R4, L7 </font>  </h4>
 </div>
 
+<div class="container">
+  <h4 align="center">Instructions:
+  <!-- Trigger the modal with a link -->
+<a data-toggle="modal" href="#myModal"><font color="primary">  Click Here </font></a></h4>
+  <!-- Modal -->
+  <div class="modal fade active" data-backdrop="false" id="myModal" role="dialog">
+    <div class="modal-dialog">
 
+      <!-- Modal content-->
+      <div class="modal-content" </div>>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 align="center" class="modal-title">Log Kampus Werk</h4>
+        </div>
+        <div class="modal-body">
+            <p> Enter your kampus sequence </p>
+              <img src=static/img/campus.jpg />
+                  <p> e.g. 1-4-7 or touches 1-4,5,4,5 </p>
+                     <p> Access your profile page & see werkout history!</p>
+                        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
 
 <div class="container" style>
 
@@ -60,11 +91,9 @@
     <button type="button" id="submit" value="submit" class="btn btn-success ">Submit</button>
 </div>
 
-<img style="margin: 15px" src=static/img/campus.jpg /> </br>
-
    </div>
        </div>
-
+</section>
 
 <script src="/static/vendor/jquery/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
@@ -72,15 +101,7 @@
     <!-- Plugin JavaScript -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 <script src={{ url_for('static', filename='js/kampus.js') }}></script>
-<!--
-<div class="col-sm-12">
-    {% for kampus in kampus %}
-    <div class="row">
 
-   <h6>  {{ kampus.name, kampus.hand, kampus.rung1, kampus.rung2, kampus.rung3, kampus.rung4, kampus.rung5, kampus.rung6, kampus.rung7, kampus.rung8, kampus.rung9, kampus.timestamp   }} </h6>
-    </div>
-    {% endfor %}
-</div> !-->
 
 
 

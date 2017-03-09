@@ -86,9 +86,9 @@ function callSets(){
 
     if (sets === 0){
     window.location = "http://www.kampuswerk.com";
-    $('#myModal').modal('show');
+   /* $('#myModal').modal('show'); */
 
-    window.alert("stay strong")
+    window.alert("HangboardWerk Logged!")
     reset()
     }
 

@@ -8,17 +8,41 @@ from flask_migrate import Migrate
 
 from config import app_config
 
+
+import os
+
 db = SQLAlchemy()
 login_manager = LoginManager();
 
-def create_app (config_name):
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_object(app_config[config_name])
-    app.config.from_pyfile('config.py')
+
+
+def create_app(config_name):
+    if os.getenv('FLASK_CONFIG') == "production":
+        app = Flask(__name__)
+        app.config.from_object(app_config[config_name])
+        app.config.update(
+            SECRET_KEY=os.getenv('SECRET_KEY'),
+            SQLALCHEMY_DATABASE_URI=os.getenv('SQLALCHEMY_DATABASE_URI'),
+            OAUTH_CREDENTIALS_GOOGLE_ID=os.getenv('OAUTH_CREDENTIALS_GOOGLE_ID'),
+            OAUTH_CREDENTIALS_GOOGLE_SECRET=os.getenv('OAUTH_CREDENTIALS_GOOGLE_SECRET'),
+            OAUTH_CREDENTIALS_FACEBOOK_ID=os.getenv('OAUTH_CREDENTIALS_FACEBOOK_ID'),
+            OAUTH_CREDENTIALS_FACEBOOK_SECRET=os.getenv('OAUTH_CREDENTIALS_FACEBOOK_SECRET'),
+            OAUTH_CREDENTIALS_TWITTER_ID=os.getenv('OAUTH_CREDENTIALS_TWITTER_ID'),
+            OAUTH_CREDENTIALS_TWITTER_SECRET=os.getenv('OAUTH_CREDENTIALS_TWITTER_SECRET')
+        )
+    else:
+        app = Flask(__name__, instance_relative_config=True)
+        app.config.from_object(app_config[config_name])
+        app.config.from_pyfile('config.py')
+
+
+
     db.init_app(app)
 
     login_manager.init_app(app)
-    login_manager.login_view = "index"
+    login_manager.login_view = ".index"
+   # login_manager.login_message = u" PLEASE LOGIN & RECORD TRAINING WERK"
+
 
     migrate = Migrate(app, db)
 

@@ -1,87 +1,75 @@
-{% extends "baselayout.html" %}
+ {% extends "baselayout.html" %}
 {% block content %}
-
-
-
 
 </div>
 <!--<h2>{{ title }}</h2> !-->
 <section id="header">
 <div class="container">
-
-<div class="row">
-
-
-
-  
-
-
-
-   <img id='p' class="col-xs-12 col-sm-6 img-responsive"  src="{{ url_for('static', filename ="img/BM2000.png")}}" />
-    <img class="col-xs-12 col-sm-6 img-responsive"  src="{{ url_for('static', filename ="img/BM1000.png")}}" /> 
-<!--
-
-    <option value="">other</option>
-</select>select onchange="$('#imageToSwap').attr('src', this.options[this.selectedIndex].value);">
-    <option value="http://127.0.0.1:5000/static/img/BM2000.png" selected>Beastmaker2000</option>
-    <option value="http://127.0.0.1:5000/static/img/BM1000.png">Beastmaker1000</option>
-    <option value="">KampusRung</option>
-    <option value="">OtherBoard</option>
-
-src="http://127.0.0.1:5000/static/img/BM2000.png"
-
-    !-->
-    
-
+<div class="row col-xs-12">
+        <h3 align="center">Hangboard: <font color="primary"> {{current_user.nickname }} </font> </h3>
 
 </div>
 
 
-
-
-
-
-
-
+<div class="row col-xs-12">
+<img id="boardchange" class="col-xs-12 img-responsive"  src="{{ url_for('static', filename ="img/BM2000.png")}}" />
 
 {% from "_formhelpers.html" import render_field %}
 
- <div class="jumbotron" id="hangboard">
-        <div class="container">
+ <div class="jumbotron col-xs-12" id="hangboard">
+        <div class="container col-xs-12">
 
-
-        <h3>Enter Hangboard Data: <font color="primary"> {{current_user.nickname }} </font> </h3>
         <h6>{% with messages = get_flashed_messages() %}
-   {% if messages %} {% for message in messages %}
-         {{ message }}
-      {% endfor %}
-   {% endif %}
+                  {% if messages %}
+                  {% for message in messages %}
+                     {{ message }}
+                    {% endfor %}
+                    {% endif %}
 
-{% endwith %}  
-
-
-
- </h6>
-            <form action="hangboard" method="POST">
-                {{ form.csrf_token }}
+                {% endwith %}  </h6>
 
 
-  
+    <form action="hangboard" method="POST">
+    {{ form.csrf_token }}
+<div class="container">
+  <h4 align="center">Instructions:
+  <!-- Trigger the modal with a link -->
+<a data-toggle="modal" href="#myModal"><font color="primary">  Click Here </font></a></h4>
+  <!-- Modal -->
+  <div class="modal fade active" data-backdrop="false" id="myModal" role="dialog">
+    <div class="modal-dialog">
 
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 align="center" class="modal-title">Log Hangboardwerk Werk</h4>
+        </div>
+        <div class="modal-body">
+          <p> Default = 1 set of 7/3 Beast Maker Protocol</p>
+          <p> Select hangboard </p>
+          <p> Select which numbered hold </p>
+          <p> Select which arm or arms used  </p>
+          <p> Number of repetitions per set </p>
+          <p> Duration of hangtime in seconds </p>
+          <p> Duration of resttime (between reps) in seconds </p>
+          <p> Using a pulley enter weight in KG needed to offset </p>
+          <p> Number of sets completed (default 1) </p>
+           <p> If doing multiple sets, enter rest between sets in seconds e.g. 5mins = 300 </p>
+           <p> Submit data to access interval werkout timer </p>
+          <p> Access your profile page & see werkout history!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
 
-<div class="form-group">  <font color="secondary">  </font>
- </select>
-    <option value="http://127.0.0.1:5000/static/img/BM2000.png" selected>Beastmaker2000</option>
-    <option value="http://127.0.0.1:5000/static/img/BM1000.png">Beastmaker1000</option>
-    <option value="">KampusRung</option>
-    <option value="">OtherBoard</option>
+    </div>
+  </div>
 
+</div>
 
- </div> 
-
-
-
-<div class="form-group">  <font color="secondary">  {{ form.board.label(class_="col-xs-6 control-label") }}
+<div class="form-group"   <font color="secondary">  {{ form.board.label(class_="col-xs-6 control-label") }}
 <div class="col-xs-6">  {{ form.board(class_="form-control") }} </div>
 </div>
 
@@ -93,16 +81,16 @@ src="http://127.0.0.1:5000/static/img/BM2000.png"
 </div>
 
 <div class="form-group">  <font color="secondary"> {{ form.reps.label(class_="col-xs-6 control-label")}}
-<div class="col-xs-6"> {{ form.reps(class_="form-control")}} </div>
+<div class="col-xs-6" id="reps"> {{ form.reps(class_="form-control")}} </div>
 </div>
 
 
 <div class="form-group">  <font color="primary">{{ form.hangtime.label(class_="col-xs-6 control-label")}}
-<div class="col-xs-6"> {{form.hangtime(class_="form-control")}} </div>
+<div class="col-xs-6" id="hangtime"> {{form.hangtime(class_="form-control")}} </div>
 </div>
 
 <div class="form-group">  <font color="secondary"> {{ form.resttime.label(class_="col-xs-6 control-label")}}
-<div class="col-xs-6"> {{ form.resttime(class_="form-control")}} </div>
+<div class="col-xs-6" id="resttime"> {{ form.resttime(class_="form-control")}} </div>
 </div>
 
 <div class="form-group">  <font color="primary">{{ form.weight_kg.label(class_="col-xs-6 control-label")}}
@@ -110,34 +98,44 @@ src="http://127.0.0.1:5000/static/img/BM2000.png"
 </div>
 
 <div class="form-group">  <font color="secondary">{{ form.sets.label(class_="col-xs-6 control-label")}}
-<div class="col-xs-6"> {{ form.sets(class_="form-control") }} </div>
+<div class="col-xs-6" id="sets"> {{ form.sets(class_="form-control") }} </div>
 </div>
 
-<div class="form-group">  <font color="primary">{{ form.setrest.label(class_="col-xs-6 control-label")}}
-<div class="col-xs-6"> {{ form.setrest(class_="form-control") }} </div>
+<div class="form-group" >  <font color="primary">{{ form.setrest.label(class_="col-xs-6 control-label")}}
+<div class="col-xs-6" id="setrest"> {{ form.setrest(class_="form-control") }} </div>
 </div>
 <input class="btn btn-primary" type="submit" value="Submit Data">
 </form>
 <div class="container">
           </div>
+</div>
+</div>
+</div>
+
+
 
 
 </section>
-<!-- {{ form.arm_used.label}} <div class="col-xs6"> {{ form.arm_used(class_="radio-inline") }} </div> !-->
-<!-- {{ form.holds_used.label }} {{ form.holds_used(size=20) }} !-->
-<!--	<div class="col-xs-1"> 	<button class="btn">?</button></div> !-->
 
 
-<script type="text/javascript" src="/static/vendor/jquery/jquery.min.js">
+<script type="text/javascript" >
 
-$(document).ready(function(){
+function myFunction() {
+    var x = document.getElementById("board").value
+    if(x === "BM1000"){
+    document.getElementById("boardchange").src="{{ url_for('static', filename ="img/BM1000.png")}}";
+    } else if (x === "BM2000"){
+        document.getElementById("boardchange").src="{{ url_for('static', filename ="img/BM2000.png")}}";
 
-    $("#board").change(function(){
-        $("#p").hide();
-    });
-});
+    }  else if (x === "KampusRung"){
+        document.getElementById("boardchange").src="{{ url_for('static', filename ="img/KampusRung.png")}}";
+    } else {
+        document.getElementById("boardchange").src="{{ url_for('static', filename ="img/UnknownBoard.png")}}";
+}}
 
-});
+
+document.getElementById("board").addEventListener("change", myFunction);
+
 
 </script>
 

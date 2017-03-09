@@ -77,7 +77,7 @@ def Circuit():
     if form.validate_on_submit():
         timestamp=datetime.utcnow()
 
-        circuitmove = CircuitMoves(current_user.nickname, request.form['numberofmoves'], request.form['intensity'], request.form['werktime'], request.form['comments'], request.form['grade'], timestamp, current_user.id)
+        circuitmove = CircuitMoves(current_user.nickname,  request.form['numberofmoves'], request.form['intensity'], request.form['werktime'], request.form['grade'], request.form['comments'], timestamp, current_user.id)
         db.session.add(circuitmove)
         db.session.commit()
         flash('You have successfully logged your circuit')
@@ -98,12 +98,16 @@ def Hangboard():
         werk = HangboardWerk(current_user.nickname, request.form['board'], request.form['holds_used'], request.form['reps'], request.form['sets'], request.form['setrest'], request.form['arm_used'], request.form['hangtime'], request.form['resttime'], request.form['weight_kg'], timestamp, current_user.id)
         db.session.add(werk)
         db.session.commit()
-        return render_template("timerwerk.html", hangtime=request.form['hangtime'], resttime=request.form['resttime'], reps=request.form['reps'], sets = request.form['sets'], setrest=request.form['setrest'], arm_used = request.form['arm_used'])
+        return render_template("timerwerk.html",board=request.form['board'], holds_used=request.form['holds_used'], hangtime=request.form['hangtime'], resttime=request.form['resttime'], reps=request.form['reps'], sets = request.form['sets'], setrest=request.form['setrest'], arm_used = request.form['arm_used'])
     else:
         flash_errors(form)
     return render_template("hangboard.html", title="Time to get strong", form=form, hangboard=HangboardWerk.query.all())
 
 
+#part of the hangboard pages
+@views.route("/timerwerk", methods=["GET","POST"])
+def timer():
+    return render_template("timerwerk.html")
 #################################################################
 @views.route("/climbing", methods=["GET", "POST"])
 @login_required
@@ -144,7 +148,7 @@ def Bouldering():
 @login_required
 def Profile():
 
-   
+
     return render_template("profile.html", kampus=KampusWerkout.query.filter_by(user_id=current_user.id).all(),
      hangboard=HangboardWerk.query.filter_by(user_id=current_user.id).all(),
          circuitmoves=CircuitMoves.query.filter_by(user_id=current_user.id).all(),
@@ -167,22 +171,16 @@ def Kampus():
 
 
 ############################################################
-
-#part of the hangboard pages
-@views.route("/timerwerk", methods=["GET","POST"])
-def timer():
-    return render_template("timerwerk.html")
-
-
-#cool round timer i might use#    
-
+####  NOT USED YET ############
+# Cool round timer ############
+#################################
 @views.route("/intervaltimer", methods=["GET","POST"])
 def intervals():
     return render_template("intervaltimer.html")
 
-
-#########################################
-#need to create weight.html page~ 
+#### NOT USED YET - make benchmark page ##
+##########################################
+#need to create weight.html page~
 @views.route("/weight", methods=["GET", "POST"])
 @login_required
 def Weight():

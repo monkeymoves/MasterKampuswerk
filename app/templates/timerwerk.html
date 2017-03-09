@@ -9,35 +9,27 @@
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 </head>
 <body>
-  <!-- <div id="progress"  class="container-fluid">
-          <div>&bull;</div>
-          <div>&bull;</div>
-          <div>&bull;</div>
-          <div>&bull;</div>
-          <div>&bull;</div>
-          <div>&bull;</div>
-          <div>&bull;</div>
 
-  </div> !-->
 
 
   <div id="welcome">
-    <h1>Hangboard Repeaters<h1>
+    <h2>Hangboard Werk<h2>
     <button id="start">Start</button>
 
-    <h2 style="color:#2c3e50">{{current_user.nickname}} </h2> <h2 <style ="colour:white"> interval workout timer</h2>
+    <h2><font color="#2c3e50">User:</font><font color="white"> {{current_user.nickname}} </font> </h2>
 
-    <p>Time driven high intensity hangboard session</p>
-    <p>No special equipment required, other than a fingerboard or edge.</p>
+    <p>Time driven intensity hangboard session</p>
+    <p>Board Used: <font color="#2c3e50">{{ board }}</font> </p>
+    <p>Hold No. Used: <font color="#2c3e50">{{ holds_used}}</font></p>
 
-    <p>Hang = {{ hangtime }} seconds</p>
-    <p>Rest = {{ resttime }} seconds </p>
-    <p>Hands used = {{ arm_used }} </p>
-    <p>Reps = {{ reps }} repetions</p>
-    <p>Rest = {{setrest }} seconds</p>
-    <p>Sets = {{ sets }} cycles </p>
+    <p>Hangtime: <font color="#2c3e50">{{ hangtime}}</font> seconds</p>
+    <p>Restime: <font color="#2c3e50">{{ resttime }}</font> seconds </p>
+    <p>Hands Used: <font color="#2c3e50">{{ arm_used }}</font> </p>
+    <p>Reps: <font color="#2c3e50">{{ reps }}</font> repetions</p>
+    <p>Sets: <font color="#2c3e50">{{ sets }}</font> cycles </p>
+    <p>Rest Between Sets: <font color="#2c3e50">{{ setrest }}</font></p>
 
-    <H4> Don't be weak</h4> 
+    <H2> Don't be weak</h2>
     <hr>
 
   </div>

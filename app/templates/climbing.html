@@ -18,7 +18,38 @@
       {% endfor %}
    {% endif %}
 {% endwith %}
+<div class="container">
+  <h4 align="center">Instructions:
+  <!-- Trigger the modal with a link -->
+<a data-toggle="modal" href="#myModal"><font color="primary">  Click Here </font></a></h4>
+  <!-- Modal -->
+  <div class="modal fade active" data-backdrop="false" id="myModal" role="dialog">
+    <div class="modal-dialog">
 
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 align="center" class="modal-title">Log Route Werk</h4>
+        </div>
+        <div class="modal-body">
+          <p> Enter your Route grade (french route grades) </p>
+          <p> Select intensity level </br> 1 = easy  5 = boxed out of your brains! </p>
+          <p> Enter the time in mins to complete</p>
+          <p> Enter info about: Wall Angle - Height - Venue - Style </p>
+          <p> Add qualitative comments about venue, style, route setting, angle, mood etc and submit data</p>
+
+          <p> Access your profile page & see werkout history!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
 
 <form class="form-group" method="POST" action="/climbing">     {{ form.csrf_token }}
 <div class="form-group"> <font color="secondary"> {{ form.grade.label(class_="col-xs-6 control-label")}}
@@ -60,14 +91,14 @@
 
 </section>
 
-<section class="jumbotron" id="database_return">
-<div class="container">
-    {% for routes in routes %}
-    <div class="row">
-    {{ routes.name, routes.grade, routes.werktime}}
-    </div>
-    {% endfor %}
-</div>
-</section>
+<!--<section class="jumbotron" id="database_return">-->
+<!--<div class="container">-->
+<!--    {% for routes in routes %}-->
+<!--    <div class="row">-->
+<!--    {{ routes.name, routes.grade, routes.werktime}}-->
+<!--    </div>-->
+<!--    {% endfor %}-->
+<!--</div>-->
+<!--</section>-->
 
 {% endblock %}

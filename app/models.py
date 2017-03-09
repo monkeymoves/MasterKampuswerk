@@ -1,31 +1,6 @@
 from app import db, login_manager
 from flask_login import UserMixin
 
-# SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-#     username="kampuswerk",
-#     password="thecatsatonthemat",
-#     hostname="127.0.0.1",
-#     databasename="kampuslocal",
-# )
-# app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
-# app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
-
-# db = SQLAlchemy(app)
-
-# app.config['OAUTH_CREDENTIALS'] = {
-#     'facebook': {
-#         'id': '837483683053553',
-#         'secret': 'bce2321650fbb754b955453e1d10b2f0'
-#     },
-#     'google': {
-#         'id': '838769494183-f2e9i6s0ng8eps3075bfsmlgoo3e7hvk.apps.googleusercontent.com',
-#         'secret': '51V_GgfoNr52oB0X9vhVXd3E'
-#     },
-#     'twitter': {
-#         'id': 'dDu5qMg32Rsh94P89UCcQoLJO',
-#         'secret': 'EB6LF33hBYjhKsiPqxofG1NN8PFSQ1i007zjdIvDekgCnkbkp7'
-#     }
-# }
 
 
 #Oauth decorators for social media login
@@ -40,7 +15,7 @@ class User(UserMixin, db.Model):
     social_id = db.Column(db.String(64), nullable=False, unique=True)
     nickname = db.Column(db.String(64), nullable=False)
     email = db.Column(db.String(64), nullable=True)
-    
+
 
     bodyweight = db.relationship('Bodyweight', backref='author', lazy='dynamic')
 
@@ -51,23 +26,10 @@ class User(UserMixin, db.Model):
     routes = db.relationship('Routes', backref='author', lazy='dynamic')
 
 
-class Bodyweight(db.Model):
 
-    __tablename__ = "bodyweight"
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(4096))
-    bodyweight_kg = db.Column(db.Float)
-    notes = db.Column(db.String(4096))
-    timestamp = db.Column(db.DateTime)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    def __init__(self, name, bodyweight_kg, notes, timestamp, user_id):
-        self.name = name
-        self.bodyweight_kg = bodyweight_kg
-        self.notes = notes
-        self.timestamp = timestamp
-        self.user_id = user_id
+
 
 class HangboardWerk(db.Model):
 
@@ -191,5 +153,24 @@ class Blocs(db.Model):
         self.angle = angle
         self.style = style
         self.comments = comments
+        self.timestamp = timestamp
+        self.user_id = user_id
+
+
+class Bodyweight(db.Model):
+
+    __tablename__ = "bodyweight"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(4096))
+    bodyweight_kg = db.Column(db.Float)
+    notes = db.Column(db.String(4096))
+    timestamp = db.Column(db.DateTime)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def __init__(self, name, bodyweight_kg, notes, timestamp, user_id):
+        self.name = name
+        self.bodyweight_kg = bodyweight_kg
+        self.notes = notes
         self.timestamp = timestamp
         self.user_id = user_id
