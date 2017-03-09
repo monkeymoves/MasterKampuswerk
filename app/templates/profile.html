@@ -9,8 +9,8 @@
     outline:none !important;
 }
 </style>
-<h3 align="center">Kampuswerk Data: <font color="primary"> {{current_user.nickname }} </font> </h3>
-
+<h3 align="center">Kampuswerk: <font color="primary"> {{current_user.nickname }} </font> </h3>
+</div>
 {% with messages = get_flashed_messages() %}
    {% if messages %}
       {% for message in messages %}
@@ -18,59 +18,35 @@
       {% endfor %}
    {% endif %}
 {% endwith %}
+
+
+
+
 <div class="container">
-  <h4 align="center">Instructions:
-  <!-- Trigger the modal with a link -->
-<a data-toggle="modal" href="#myModal">  <font color="primary"> Click Here </font> </a></h4>
-  <!-- Modal -->
-  <div class="modal fade active" data-backdrop="false" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 align="center" class="modal-title">Log Circuit Werk</h4>
-        </div>
-        <div class="modal-body">
-          <p> Toggle buttons on/off to show/hide the different data tables</p>
-          <p> Currently not all the data is displayed</p>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</div>
-
-<div class="container col-sm-12" style>
 <h4></h4>
    <div class="row">
 
         <div class="btn-group-vertical col-xs-12 button-wrapper"  >
 
-              <button type="button" id="L4" class="btn btn-primary  "  >Hangboard Data</button>
+              <button type="button" id="L4" class="btn btn-primary"  >Hangboard Data</button>
+
               <button type="button" id="L3" class="btn btn-success  ">Routes Data</button>
               <button type="button" id="L2" class="btn btn-info  ">Kampus Data</button>
               <button type="button" id="L1" class="btn btn-warning   ">Circuits Data</button>
-              <button type="button" id="L0" class="btn btn-danger ">Blocs Data</button>
+              <button type="button" id="L0" class="btn btn-danger ">Blocs Data</button>&nbsp;&nbsp;
         </div>
     </div>
 </div>
 
-<div class="containter col-sm-12">
+<div class="containter">
 <div class="container" style="display:none" id="KampusTable">
-  <h4> <font color="#5bc0de" style="text-align:center"> Kampus Werk Data </font> </h4>
+  <h4> <font color="#5bc0de" style="text-align:center">Kampus Werk Data </font> </h4>
   <table class="table table-striped">
     <thead>
       <tr>
         <th> <font color="#5bc0de"> Name</font></th>
         <th><font color="#5bc0de"> Kampus Sequence</font></th>
-        <th> <font color="#5bc0de">Date & Time </font></th>
+        <th> <font color="#5bc0de">Date/Time </font></th>
       </tr>
     </thead>
         {% for kampus in kampus %}
@@ -83,8 +59,9 @@
     {% endfor %}
     </tbody>
   </table>
+  </div></div>
 </div>
-
+</div>
 <div class="container" style="display:none" id="HangboardTable">
   <h4> <font color="#2C3E50" style="text-align:center"> Hangboard Werk Data </font> </h4>
   <table class="table table-striped">
@@ -109,7 +86,7 @@
         <td>{{hangboard.hangtime}}</td>
         <td>{{hangboard.resttime}}</td>
         <td>{{hangboard.weight_kg}}</td>
-      </tr>
+      </tr></tbody></tr>
     {% endfor %}
     </tbody>
   </table>
@@ -140,8 +117,7 @@
     {% endfor %}
     </tbody>
   </table>
-</div>
-
+</div></thead></table></div>
 
 <div class="container" style="display:none" id="RouteTable">
   <h4> <font color="#18BC9C" style="text-align:center">Route Werk Data </font> </h4>
@@ -199,9 +175,36 @@
   </table>
 </div>
 </div>
+<div class="container">
+  <h3 align="center">Instructions:
+  <!-- Trigger the modal with a link -->
+<a data-toggle="modal" href="#myModal">  <font color="primary"> Click Here </font> </a></h3>
+  <!-- Modal -->
+  <div class="modal fade active" data-backdrop="false" id="myModal" role="dialog">
+    <div class="modal-dialog">
 
-</section>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 align="center" class="modal-title">Log Circuit Werk</h4>
+        </div>
+        <div class="modal-body">
+          <p> Toggle buttons on/off to show/hide the different data tables</p>
+          <p> Currently not all the data is displayed</p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
+</div>
+</section>
 <footer> Data = Power </footer>
 
 <script>
