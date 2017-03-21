@@ -72,10 +72,11 @@ class FacebookSignIn(OAuthSignIn):
                   'grant_type': 'authorization_code',
                   'redirect_uri': self.get_callback_url()}
         )
-        me = oauth_session.get('me?fields=id,email').json()
+        me = oauth_session.get('me?fields=id,email,name').json()
+        print (me)
         return (
             'facebook$' + me['id'],
-            me.get('email').split('@')[0],  # Facebook does not provide
+            me.get('name'),  # Facebook does not provide
                                             # username, so the email's user
                                             # is used instead
             me.get('email')
