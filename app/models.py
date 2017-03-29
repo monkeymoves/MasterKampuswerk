@@ -14,8 +14,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     social_id = db.Column(db.String(64), nullable=False, unique=True)
     nickname = db.Column(db.String(64), nullable=False)
-    email = db.Column(db.String(64), nullable=True)
-
+    email = db.Column(db.String(64), nullable=True)  
 
     bodyweight = db.relationship('Bodyweight', backref='author', lazy='dynamic')
 
@@ -24,9 +23,6 @@ class User(UserMixin, db.Model):
     circuitmoves = db.relationship('CircuitMoves', backref='author', lazy='dynamic')
     blocs = db.relationship('Blocs', backref='author', lazy='dynamic')
     routes = db.relationship('Routes', backref='author', lazy='dynamic')
-
-
-
 
 
 
@@ -62,6 +58,9 @@ class HangboardWerk(db.Model):
         self.timestamp = timestamp
         self.user_id = user_id
 
+    def as_dict (self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
 class KampusWerkout(db.Model):
     __tablename__ = "kampuswerkout"
     id = db.Column(db.Integer, primary_key = True)
@@ -74,6 +73,9 @@ class KampusWerkout(db.Model):
         self.kampuslog = kampuslog
         self.timestamp = timestamp
         self.user_id = user_id
+
+    def as_dict (self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
 class CircuitMoves(db.Model):
@@ -98,7 +100,8 @@ class CircuitMoves(db.Model):
         self.comments = comments
         self.timestamp = timestamp
         self.user_id = user_id
-
+    def as_dict (self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}        
 
 class Routes(db.Model):
 
@@ -128,6 +131,8 @@ class Routes(db.Model):
         self.comments = comments
         self.timestamp = timestamp
         self.user_id = user_id
+    def as_dict (self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 class Blocs(db.Model):
 
@@ -155,7 +160,8 @@ class Blocs(db.Model):
         self.comments = comments
         self.timestamp = timestamp
         self.user_id = user_id
-
+    def as_dict (self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 class Bodyweight(db.Model):
 

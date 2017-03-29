@@ -13,6 +13,7 @@ import os
 
 db = SQLAlchemy()
 login_manager = LoginManager();
+login_manager.login_message = u" Use your favourite social media ID's to login & create a free account! "
 
 
 
@@ -41,7 +42,7 @@ def create_app(config_name):
 
     login_manager.init_app(app)
     login_manager.login_view = ".index"
-   # login_manager.login_message = u" PLEASE LOGIN & RECORD TRAINING WERK"
+
 
 
     migrate = Migrate(app, db)

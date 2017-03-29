@@ -1,4 +1,4 @@
-from flask import render_template, request, flash, redirect, url_for, Blueprint
+from flask import render_template, request, flash, redirect, url_for, Blueprint, jsonify
 from datetime import datetime
 from flask_login import UserMixin, login_user, logout_user, current_user, login_required
 #luke new imports###########################################################
@@ -6,6 +6,8 @@ from .oauth import OAuthSignIn
 from .models import User, Bodyweight, HangboardWerk, KampusWerkout, CircuitMoves, Routes, Blocs
 from app import db
 from .forms import KampusForm, HangboardForm, CircuitForm, BlocForm, BodyweightForm, RoutesForm
+
+import flask_excel as excel
 
 #luke new imports end#####################################################
 
@@ -20,7 +22,6 @@ views = Blueprint("", __name__)
 # @views.route("/test", methods=['GET'])
 # def test():
 #     return "This is a Test!"
-
 
 @views.route('/', methods=["GET","POST"])
 def index():
@@ -194,3 +195,60 @@ def Weight():
     else:
         flash_errors(form)
     return render_template("weight.html", form=form, bodyweight=Bodyweight.query.all())
+
+
+############################################################
+
+@views.route("/data/kampus", methods=["GET"])
+@login_required
+def Kampus_Data():
+    data = [];
+    for r in  KampusWerkout.query.filter_by(user_id=current_user.id).all():
+        data.append(r.as_dict())
+    return jsonify(data)
+
+@views.route("/data/hangboard", methods=["GET"])
+@login_required
+def Handboard_Data():
+    data = [];
+    for r in  HangboardWerk.query.filter_by(user_id=current_user.id).all():
+        data.append(r.as_dict())
+    return jsonify(data)
+
+
+@views.route("/data/circuits", methods=["GET"])
+@login_required
+def Circuit_Data():
+    data = [];
+    for r in  CircuitMoves.query.filter_by(user_id=current_user.id).all():
+        data.append(r.as_dict())
+    return jsonify(data)
+
+@views.route("/data/routes", methods=["GET"])
+@login_required
+def Route_Data():
+    data = [];
+    for r in  Routes.query.filter_by(user_id=current_user.id).all():
+        data.append(r.as_dict())
+    return jsonify(data)
+
+@views.route("/data/blocs", methods=["GET"])
+@login_required
+def Blocs_Data():
+    data = [];
+    for r in  Blocs.query.filter_by(user_id=current_user.id).all():
+        data.append(r.as_dict())
+    return jsonify(data)
+
+##########################################################
+###failed excel port #####################################
+
+@views.route("/charts")
+@login_required
+def charts():
+    return render_template("charts.html")
+
+@views.route("/export", methods=['GET'])
+@login_required
+def doexport():
+    return excel.make_response_from_tables(db.session, [KampusWerkout], "xls")
