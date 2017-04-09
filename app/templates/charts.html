@@ -1,39 +1,8 @@
+
+  
 {% extends "baselayout.html" %}
-
 {% block content %}
-
 <section>
-
-
-
-<div class="container">
-  <h3 align="center">Data Instructions:
-  <!-- Trigger the modal with a link -->
-<a data-toggle="modal" href="#myModal">  <font color="primary"> Click Here </font> </a></h3>
-  <!-- Modal -->
-  <div class="modal fade active" data-backdrop="false" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 align="center" class="modal-title">Data Analysis Options</h4>
-        </div>
-        <div class="modal-body">
-          <p> Toggle buttons on/off to showhide the different data tables</p>
-          <p> More charts will be added once feedback is collected so get in touch for specific feature requests lukejjmaggs@gmail.com </p>
-          <p> For now if you want a full analysis options, just grab the full Excel export of all your training data!</p>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
     <div class="container">
         <div class="col-xs-12">
             <div class="well">
@@ -99,10 +68,6 @@
                                         <h5> Duration </h5></th>
                                     <th>
                                         <h5> Venue </h5></th>
-
-                                      <th>
-                                        <h5> Comments </h5></th>
-   
                                 </tr>
                             </thead>
                             <tbody>
@@ -115,8 +80,6 @@
                                     <td class="clear" id="venue"> </td>
                                     <td class="clear" id="duration"> </td>
                                     <td class="clear" id="angle"> </td>
-                                    <td class="clear" id="routescomments"> </td>
-
                                 </tr>
                             </tbody>
                         </table>
@@ -234,9 +197,7 @@
             </div>
         </div>
     </div>
-
 </section>
-<footer> Data = Power </footer>
 
 <script type="text/javascript" src="/static/js/profile.js"></script>
 
@@ -249,73 +210,73 @@
 
 
 var hangsessions = $.getJSON("/data/hangboard", function(data) {
-        hangsessions = data.length;
-    });
+				hangsessions = data.length;
+		});
 
 
 var routesessions = $.getJSON("/data/routes", function(data) {
-        routesessions = data.length;
-    });
+				routesessions = data.length;
+		});
 
 
 
 var kampussessions = $.getJSON("/data/kampus", function(data) {
-        kampussessions = data.length;
-    });
+				kampussessions = data.length;
+		});
 
 var circuitsessions = $.getJSON("/data/circuits", function(data) {
-        circuitsessions = data.length;
-    });
+				circuitsessions = data.length;
+		});
 
 var blocsessions = $.getJSON("/data/blocs", function(data) {
-        blocsessions = data.length;
-    });
+				blocsessions = data.length;
+		});
 
 var hangboardSessions
 $("#chart").click(function() {
-    
+		
 
-    
+		
 
-      var ctx = document.getElementById("ChartT2");
-      var ChartT2 = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ["Hang", "Routes", "Kampus", "Circuits", "Blocs"],
-          datasets: [{
-            label: 'total sessions',
-            data: [hangsessions, routesessions, kampussessions, circuitsessions, blocsessions],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255,99,132,1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        }
-      });
-    });
-  
+			var ctx = document.getElementById("ChartT2");
+			var ChartT2 = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: ["Hang", "Routes", "Kampus", "Circuits", "Blocs"],
+					datasets: [{
+						label: 'total sessions',
+						data: [hangsessions, routesessions, kampussessions, circuitsessions, blocsessions],
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)'
+						],
+						borderColor: [
+							'rgba(255,99,132,1)',
+							'rgba(54, 162, 235, 1)',
+							'rgba(255, 206, 86, 1)',
+							'rgba(75, 192, 192, 1)',
+							'rgba(153, 102, 255, 1)',
+							'rgba(255, 159, 64, 1)'
+						],
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			});
+		});
+	
 
 
 
@@ -323,6 +284,6 @@ $("#chart").click(function() {
 
 
 
-{% endblock %}
 
 
+{% endblock  %}

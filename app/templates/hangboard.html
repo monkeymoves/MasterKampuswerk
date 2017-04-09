@@ -1,18 +1,22 @@
  {% extends "baselayout.html" %}
 {% block content %}
 
-</div>
+
+
+
 <!--<h2>{{ title }}</h2> !-->
-<section id="header">
+<section>
 <div class="container">
 <div class="row col-xs-12">
-        <h3 align="center">Hangboard: <font color="primary"> {{current_user.nickname }} </font> </h3>
+        <h3 align="center" id="userName">Hangboard: <font color="primary"> {{current_user.nickname }} </font> </h3>
+        <div id="TimerInstructions" style="display:none;">I am instructions!!</div>
 
 </div>
 
 
 <div class="row col-xs-12">
-<img id="boardchange" class="col-xs-12" class="img-responsive"  src="{{ url_for('static', filename ="img/BM2000.png")}}" />
+<img id="PicHangboard" class="col-xs-12" class="img-responsive"  src="{{ url_for('static', filename ="img/BM2000.png")}}" />
+<div id="Timer" style="display:none;">I am Timer!!</div>
 
 {% from "_formhelpers.html" import render_field %}
 
@@ -66,48 +70,48 @@
 
     </div>
   </div>
-
-</div>
-
-<div class="form-group"   <font color="secondary">  {{ form.board.label(class_="col-xs-6 control-label") }}
-<div class="col-xs-6">  {{ form.board(class_="form-control") }} </div>
-</div>
-
-<div class="form-group">  <font color="primary"> {{ form.holds_used.label(class_="col-xs-6 control-label") }}
-<div class="col-xs-6"> {{ form.holds_used(class_="form-control") }} </div>
-</div>
-<div class="form-group">  <font color="secondary">{{ form.arm_used.label(class_="col-xs-6 control-label")}}
-<div class="col-xs-6"> {{ form.arm_used(class_="form-control") }} </div>
-</div>
-
-<div class="form-group">  <font color="secondary"> {{ form.reps.label(class_="col-xs-6 control-label")}}
-<div class="col-xs-6" id="reps"> {{ form.reps(class_="form-control")}} </div>
 </div>
 
 
-<div class="form-group">  <font color="primary">{{ form.hangtime.label(class_="col-xs-6 control-label")}}
-<div class="col-xs-6" id="hangtime"> {{form.hangtime(class_="form-control")}} </div>
+<div class="form-group"> <font color="secondary"> {{ form.board.label(class_="col-xs-6 control-label") }}
+    <div class="col-xs-6"> {{ form.board(class_="form-control") }} </div>
 </div>
-
-<div class="form-group">  <font color="secondary"> {{ form.resttime.label(class_="col-xs-6 control-label")}}
-<div class="col-xs-6" id="resttime"> {{ form.resttime(class_="form-control")}} </div>
+<div class="form-group">
+    <font color="primary"> {{ form.holds_used.label(class_="col-xs-6 control-label") }}
+        <div class="col-xs-6"> {{ form.holds_used(class_="form-control") }} </div>
 </div>
-
-<div class="form-group">  <font color="primary">{{ form.weight_kg.label(class_="col-xs-6 control-label")}}
-<div class="col-xs-6">{{ form.weight_kg(class_="form-control") }} </div>
+<div class="form-group">
+    <font color="secondary">{{ form.arm_used.label(class_="col-xs-6 control-label")}}
+        <div class="col-xs-6"> {{ form.arm_used(class_="form-control") }} </div>
 </div>
-
-<div class="form-group">  <font color="secondary">{{ form.sets.label(class_="col-xs-6 control-label")}}
-<div class="col-xs-6" id="sets"> {{ form.sets(class_="form-control") }} </div>
+<div class="form-group">
+    <font color="secondary"> {{ form.reps.label(class_="col-xs-6 control-label")}}
+        <div class="col-xs-6" id="reps"> {{ form.reps(class_="form-control")}} </div>
 </div>
-
-<div class="form-group" >  <font color="primary">{{ form.setrest.label(class_="col-xs-6 control-label")}}
-<div class="col-xs-6" id="setrest"> {{ form.setrest(class_="form-control") }} </div>
+<div class="form-group">
+    <font color="primary">{{ form.hangtime.label(class_="col-xs-6 control-label")}}
+        <div class="col-xs-6" id="hangtime"> {{form.hangtime(class_="form-control")}} </div>
 </div>
-<input class="btn btn-primary" type="submit" value="Submit Data">
+<div class="form-group">
+    <font color="secondary"> {{ form.resttime.label(class_="col-xs-6 control-label")}}
+        <div class="col-xs-6" id="resttime"> {{ form.resttime(class_="form-control")}} </div>
+</div>
+<div class="form-group">
+    <font color="primary">{{ form.weight_kg.label(class_="col-xs-6 control-label")}}
+        <div class="col-xs-6">{{ form.weight_kg(class_="form-control") }} </div>
+</div>
+<div style="display:none; class="form-group">
+    <font color="secondary">{{ form.sets.label(class_="col-xs-6 control-label")}}
+        <div class="col-xs-6" id="sets"> {{ form.sets(class_="form-control") }} </div>
+</div>
+<div style="display:none; class="form-group">
+    <font color="primary">{{ form.setrest.label(class_="col-xs-6 control-label")}}
+        <div class="col-xs-6" id="setrest"> {{ form.setrest(class_="form-control") }} </div>
+</div>
+<input class="btn btn-primary" type="submit" value="Submit Data" id="BtnSubmit">
 </form>
 <div class="container">
-          </div>
+</div>
 </div>
 </div>
 </div>
@@ -123,14 +127,14 @@
 function myFunction() {
     var x = document.getElementById("board").value
     if(x === "BM1000"){
-    document.getElementById("boardchange").src="{{ url_for('static', filename ="img/BM1000.png")}}";
+    document.getElementById("PicHangboard").src="{{ url_for('static', filename ="img/BM1000.png")}}";
     } else if (x === "BM2000"){
-        document.getElementById("boardchange").src="{{ url_for('static', filename ="img/BM2000.png")}}";
+        document.getElementById("PicHangboard").src="{{ url_for('static', filename ="img/BM2000.png")}}";
 
-    }  else if (x === "KampusRung"){
-        document.getElementById("boardchange").src="{{ url_for('static', filename ="img/KampusRung.png")}}";
+    } else if (x === "KampusRung"){
+        document.getElementById("PicHangboard").src="{{ url_for('static', filename ="img/KampusRung.png")}}";
     } else {
-        document.getElementById("boardchange").src="{{ url_for('static', filename ="img/UnknownBoard.png")}}";
+        document.getElementById("PicHangboard").src="{{ url_for('static', filename ="img/UnknownBoard.png")}}";
 }}
 
 
@@ -138,6 +142,8 @@ document.getElementById("board").addEventListener("change", myFunction);
 
 
 </script>
+
+<script type="text/javascript" src="/static/js/hangboard.js"></script>
 
 {% endblock %}
 

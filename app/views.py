@@ -99,10 +99,10 @@ def Hangboard():
         werk = HangboardWerk(current_user.nickname, request.form['board'], request.form['holds_used'], request.form['reps'], request.form['sets'], request.form['setrest'], request.form['arm_used'], request.form['hangtime'], request.form['resttime'], request.form['weight_kg'], timestamp, current_user.id)
         db.session.add(werk)
         db.session.commit()
-        return render_template("timerwerk.html",board=request.form['board'], holds_used=request.form['holds_used'], hangtime=request.form['hangtime'], resttime=request.form['resttime'], reps=request.form['reps'], sets = request.form['sets'], setrest=request.form['setrest'], arm_used = request.form['arm_used'])
+        return "OK", 201
     else:
         flash_errors(form)
-    return render_template("hangboard.html", title="Time to get strong", form=form, hangboard=HangboardWerk.query.all())
+        return render_template("hangboard.html", title="Time to get strong", form=form, hangboard=HangboardWerk.query.all())
 
 
 #part of the hangboard pages
@@ -123,8 +123,8 @@ def Climbing():
         flash('You have successfully logged your route')
 
     else:
-        flash_errors(form)
-
+        flash_errors(form
+)
     return render_template("climbing.html", title="Time to get strong", form=form, routes=Routes.query.all())
 ##########################################################
 @views.route("/bouldering", methods=["GET", "POST"])
@@ -251,4 +251,4 @@ def charts():
 @views.route("/export", methods=['GET'])
 @login_required
 def doexport():
-    return excel.make_response_from_tables(db.session, [KampusWerkout], "xls")
+    return excel.make_response_from_tables(db.session, [KampusWerkout, HangboardWerk, CircuitMoves, Routes, Blocs, Bodyweight], "xls")
