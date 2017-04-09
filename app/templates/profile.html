@@ -7,7 +7,7 @@
 
 
 <div class="container">
-  <h3 align="center">Data Instructions:
+  <h3 align="center">Instructions:
   <!-- Trigger the modal with a link -->
 <a data-toggle="modal" href="#myModal">  <font color="primary"> Click Here </font> </a></h3>
   <!-- Modal -->
@@ -39,11 +39,11 @@
             <div class="well">
                <h4> Training Data: <font color="primary"> Tables </font> </h4>
 
-                <button type="button" id="L4" class="btn btn-primary  btn-sm ">Hang</button>
-                <button type="button" id="L3" class="btn btn-success  btn-sm">Route</button>
-                <button type="button" id="L2" class="btn btn-info  btn-sm">Kampus</button>
-                <button type="button" id="L1" class="btn btn-warning  btn-sm">Circuit</button>
-                <button type="button" id="L0" class="btn btn-danger  btn-sm">Blocs</button>
+                <button type="button" id="L4" class="btn btn-primary  btn-xs ">Hang</button>
+                <button type="button" id="L3" class="btn btn-success  btn-xs">Route</button>
+                <button type="button" id="L2" class="btn btn-info  btn-xs">Kampus</button>
+                <button type="button" id="L1" class="btn btn-warning  btn-xs">Circuit</button>
+                <button type="button" id="L0" class="btn btn-danger  btn-xs">Blocs</button>
                 &nbsp;&nbsp;
                 <div class="allTables" id="ToggleTables">
                     <div class="table-responsive" id="hangboardTable" style="display:none">
@@ -228,9 +228,14 @@
     <div class="container">
         <div class="col-xs-12">
             <div class="well">
-                <h4> Full Training Export: <font color="primary"> Excel
-  </font> </h4>
-                <button onclick="location.href='/export';" type="button" id="export" class="btn btn-danger btn-block btn-sm">Export</button>
+                <h4> Training Export: <font color="primary"> Excel  </font> </h4>
+
+                <button onclick="location.href='/export/hangboard ';" type="button" id="E4" class="btn btn-primary  btn-xs ">Hang</button>
+                <button onclick="location.href='/export/routes ';" type="button" id="E3" class="btn btn-success  btn-xs">Route</button>
+                <button onclick="location.href='/export/kampus ';" type="button" id="E2" class="btn btn-info  btn-xs">Kampus</button>
+                <button onclick="location.href='/export/circuits ';" type="button" id="E1" class="btn btn-warning  btn-xs">Circuit</button>
+                <button onclick="location.href='/export/blocs ';" type="button" id="E0" class="btn btn-danger  btn-xs">Blocs</button>
+                &nbsp;&nbsp;
             </div>
         </div>
     </div>

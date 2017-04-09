@@ -248,7 +248,38 @@ def Blocs_Data():
 def charts():
     return render_template("charts.html")
 
-@views.route("/export", methods=['GET'])
+@views.route("/export/hangboard", methods=['GET'])
 @login_required
-def doexport():
-    return excel.make_response_from_tables(db.session, [KampusWerkout, HangboardWerk, CircuitMoves, Routes, Blocs, Bodyweight], "xls")
+def doexport0():
+    query_sets0 = HangboardWerk.query.filter_by(user_id=current_user.id).all()
+    column_names0 = ['arm_used', 'board', 'hangtime', 'holds_used', 'name', 'reps', 'resttime', 'timestamp',   'user_id', 'weight_kg']
+    return excel.make_response_from_query_sets(query_sets0, column_names0, "xls")
+
+@views.route("/export/routes", methods=['GET'])
+@login_required
+def doexport1():
+    query_sets1 = Routes.query.filter_by(user_id=current_user.id).all()
+    column_names1 = ['angle', 'comments', 'grade', 'height', 'intensity', 'name', 'style', 'timestamp',   'user_id', 'venue', 'werktime']
+    return excel.make_response_from_query_sets(query_sets1, column_names1, "xls")
+
+@views.route("/export/kampus", methods=['GET'])
+@login_required   
+def doexport2():
+
+    query_sets2 = KampusWerkout.query.filter_by(user_id=current_user.id).all()
+    column_names2 = ['kampuslog', 'name', 'timestamp']
+    return excel.make_response_from_query_sets(query_sets2, column_names2, "xls")
+
+@views.route("/export/circuits", methods=['GET'])
+@login_required
+def doexport3():
+    query_sets3 = CircuitMoves.query.filter_by(user_id=current_user.id).all()
+    column_names3 = ['comments', 'grade', 'intensity', 'name', 'numberofmoves', 'timestamp',  'werktime']
+    return excel.make_response_from_query_sets(query_sets3, column_names3, "xls")
+
+@views.route("/export/blocs", methods=['GET']) 
+@login_required
+def doexport4():
+    query_sets4 = Blocs.query.filter_by(user_id=current_user.id).all()
+    column_names4 = ['angle', 'comments', 'grade', 'intensity', 'name', 'style', 'timestamp',   'venue', 'werktime']
+    return excel.make_response_from_query_sets(query_sets4, column_names4, "xls")
