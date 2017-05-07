@@ -226,6 +226,9 @@ var kampussessions = $.getJSON("/data/kampus", function(data) {
 
 var circuitsessions = $.getJSON("/data/circuits", function(data) {
 				circuitsessions = data.length;
+				console.log(circuitsessions)
+				console.log(data[0].timestamp)
+
 		});
 
 var blocsessions = $.getJSON("/data/blocs", function(data) {

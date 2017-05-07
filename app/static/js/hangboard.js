@@ -92,6 +92,8 @@ $(document).ready(function () {
 
 	$("#BtnSubmit").on("click", function(e) {
 		e.preventDefault();
+		$("body").scrollTop(0);
+
 		var data = $("form").serialize();
 		$.ajax({
 			url:"/hangboard",

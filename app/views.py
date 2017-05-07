@@ -1,5 +1,5 @@
 from flask import render_template, request, flash, redirect, url_for, Blueprint, jsonify
-from datetime import datetime
+from datetime import datetime, timedelta 
 from flask_login import UserMixin, login_user, logout_user, current_user, login_required
 #luke new imports###########################################################
 from .oauth import OAuthSignIn
@@ -8,7 +8,7 @@ from app import db
 from .forms import KampusForm, HangboardForm, CircuitForm, BlocForm, BodyweightForm, RoutesForm
 
 import flask_excel as excel
-
+from sqlalchemy import and_
 #luke new imports end#####################################################
 
 views = Blueprint("", __name__)
@@ -207,6 +207,16 @@ def Kampus_Data():
         data.append(r.as_dict())
     return jsonify(data)
 
+@views.route("/data/kampus/7days", methods=["GET"])
+@login_required
+def Kampus_Data_7():
+
+    data = [];
+    for r in  KampusWerkout.query.filter(KampusWerkout.timestamp >= datetime.utcnow() -
+     timedelta(weeks=1)).filter(KampusWerkout.user_id == current_user.id): 
+        data.append(r.as_dict())
+    return jsonify(data)
+
 @views.route("/data/hangboard", methods=["GET"])
 @login_required
 def Handboard_Data():
@@ -214,6 +224,21 @@ def Handboard_Data():
     for r in  HangboardWerk.query.filter_by(user_id=current_user.id).all():
         data.append(r.as_dict())
     return jsonify(data)
+
+
+
+@views.route("/data/hangboard/7days", methods=["GET"])
+@login_required
+def Handboard_Data_7():
+
+    data = [];
+    for r in  HangboardWerk.query.filter(HangboardWerk.timestamp >= datetime.utcnow() -
+     timedelta(weeks=1)).filter(HangboardWerk.user_id == current_user.id): 
+        data.append(r.as_dict())
+    return jsonify(data)
+
+
+
 
 
 @views.route("/data/circuits", methods=["GET"])
@@ -224,6 +249,17 @@ def Circuit_Data():
         data.append(r.as_dict())
     return jsonify(data)
 
+@views.route("/data/circuits/7days", methods=["GET"])
+@login_required
+def Circuit_Data_7():
+
+    data = [];
+    for r in  CircuitMoves.query.filter(CircuitMoves.timestamp >= datetime.utcnow() -
+     timedelta(weeks=1)).filter(CircuitMoves.user_id == current_user.id): 
+        data.append(r.as_dict())
+    return jsonify(data)
+
+
 @views.route("/data/routes", methods=["GET"])
 @login_required
 def Route_Data():
@@ -232,11 +268,31 @@ def Route_Data():
         data.append(r.as_dict())
     return jsonify(data)
 
+@views.route("/data/routes/7days", methods=["GET"])
+@login_required
+def Route_Data_7():
+
+    data = [];
+    for r in  Routes.query.filter(Routes.timestamp >= datetime.utcnow() -
+     timedelta(weeks=1)).filter(Routes.user_id == current_user.id): 
+        data.append(r.as_dict())
+    return jsonify(data)
+
 @views.route("/data/blocs", methods=["GET"])
 @login_required
 def Blocs_Data():
     data = [];
     for r in  Blocs.query.filter_by(user_id=current_user.id).all():
+        data.append(r.as_dict())
+    return jsonify(data)
+
+@views.route("/data/blocs/7days", methods=["GET"])
+@login_required
+def Bloc_Data_7():
+
+    data = [];
+    for r in  Blocs.query.filter(Blocs.timestamp >= datetime.utcnow() -
+     timedelta(weeks=1)).filter(Blocs.user_id == current_user.id): 
         data.append(r.as_dict())
     return jsonify(data)
 

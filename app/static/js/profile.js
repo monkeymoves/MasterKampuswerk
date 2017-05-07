@@ -45,6 +45,7 @@ $(document).ready(function() {
 						$('#dateroutes').append('<p> ' + item.timestamp.substring(0, 17) + '</p>');
 						$('#venue').append('<p>' + item.venue + '</p>');
 						$('#duration').append('<p>' + item.werktime + '</p>');
+						$('#routescomments').append('<p>' + item.comments + '</p>');
 
 					});
 
